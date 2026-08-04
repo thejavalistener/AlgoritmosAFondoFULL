@@ -17,6 +17,10 @@ struct List
     Node<T>* curr;
 };
 
+template <typename T, typename K>
+T* listFind(List<T> , K, int cmpTK(T, K));
+
+
 template <typename T>
 List<T> list()
 {
@@ -62,6 +66,7 @@ template <typename T, typename K>
 T listRemove(List<T>& lst, K k, int cmpTK(T, K))
 {
     assert(cmpTK != nullptr && "La funcion cmpTK no puede ser nula");
+    assert ((listFind<T,K>(lst,k,cmpTK))!=NULL && "k debe existir en lst");
     lst.size--;
     T ret = remove<T, K>(lst.p, k, cmpTK);
     if(lst.size == 0)
