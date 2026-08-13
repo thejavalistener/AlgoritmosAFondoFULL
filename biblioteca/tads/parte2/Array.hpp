@@ -174,7 +174,6 @@ void arraySort(Array<T>& a,int cmpTT(T,T))
    sort<T>(a.a,a.len,cmpTT);
 }
 
-
 template<typename T>
 void arrayReset(Array<T>& a)
 {
