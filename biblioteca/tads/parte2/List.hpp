@@ -17,9 +17,8 @@ struct List
     Node<T>* curr;
 };
 
-template <typename T, typename K>
-T* listFind(List<T> , K, int cmpTK(T, K));
-
+template <typename T, typename K> T* listFind(List<T> , K, int cmpTK(T, K));
+template <typename T> int listSize(List<T> lst);
 
 template <typename T>
 List<T> list()
@@ -30,9 +29,6 @@ List<T> list()
     lst.curr = NULL;
     return lst;
 }
-
-template <typename T> int listSize(List<T> lst);
-
 
 template <typename T>
 T* listAdd(List<T>& lst, T e)
@@ -61,7 +57,6 @@ T* listAddFirst(List<T>& lst, T e)
     return ret;
 }
 
-
 template <typename T, typename K>
 T listRemove(List<T>& lst, K k, int cmpTK(T, K))
 {
@@ -75,8 +70,6 @@ T listRemove(List<T>& lst, K k, int cmpTK(T, K))
     }
     return ret;
 }
-
-
 
 template <typename T>
 T listRemoveFirst(List<T>& lst)
