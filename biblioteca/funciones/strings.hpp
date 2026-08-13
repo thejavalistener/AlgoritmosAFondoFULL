@@ -349,10 +349,6 @@ string replace(string s, char oldChar, char newChar)
     return s;
 }
 
-void f(int* x)
-{
-}
-
 string insertAt(string s, int pos, char c)
 {
     assert(pos >= 0 && "La posicion debe ser mayor o igual a 0");
