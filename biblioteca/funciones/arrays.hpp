@@ -5,12 +5,6 @@
 #include <cassert>
 
 template <typename T>
-int cmpTT(T a, T b)
-{
-   return a<b?-1:a>b?1:0;
-}
-
-template <typename T>
 int add(T arr[],int& len,T e)
 {
    assert(arr != NULL && "El array no puede ser nulo");

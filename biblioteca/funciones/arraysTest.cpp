@@ -6,6 +6,31 @@
 using std::cout;
 using std::endl;
 
+ // -- PROTOTIOPOS --
+void testAdd();
+void testInsert();
+void testRemove();
+void testFind();
+void testOrderedInsert();
+void testSort();
+
+// -- MAIN --
+int main()
+{
+   testAdd();
+   testInsert();
+   testRemove();
+   testFind();
+   testOrderedInsert();
+   testSort();
+
+   cout << "Todos los tests de arrays pasaron correctamente." << endl;
+   return 0;
+}
+
+
+
+
 int cmpIntInt(int a, int b)
 {
    return a < b ? -1 : a > b ? 1 : 0;
@@ -125,17 +150,4 @@ void testSort()
    assert(arr3[0] == 1);
    assert(arr3[1] == 2);
    assert(arr3[2] == 2);
-}
-
-int main()
-{
-   testAdd();
-   testInsert();
-   testRemove();
-   testFind();
-   testOrderedInsert();
-   testSort();
-
-   cout << "Todos los tests de arrays pasaron correctamente." << endl;
-   return 0;
 }

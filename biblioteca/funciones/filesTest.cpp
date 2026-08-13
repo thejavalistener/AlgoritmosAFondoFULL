@@ -10,6 +10,41 @@ using std::endl;
 using std::remove;
 using std::string;
 
+// -- PROTOTIPOS --
+void testWrite();
+void testRead();
+void testFileSize();
+void testSeek();
+void testFilePos();
+void testReadLine();
+void testReadWord_withAlsoAllowed();
+void testReadWord();
+void testWriteString();
+void testWriteWord();
+void testWriteLine();
+
+// -- MAIN --
+int main()
+{
+   testWrite();
+   testRead();
+   testFileSize();
+   testSeek();
+   testFilePos();
+   testReadLine();
+   testReadWord_withAlsoAllowed();
+   testReadWord();
+   testWriteString();
+   testWriteWord();
+   testWriteLine();
+
+   cout << "Todos los tests de files pasaron correctamente." << endl;
+   return 0;
+}
+
+
+
+
 FILE* openFile(const char* path, const char* mode)
 {
    FILE* f = fopen(path, mode);
@@ -217,20 +252,3 @@ void testWriteLine()
    closeAndDeleteFile(f, path);
 }
 
-int main()
-{
-   testWrite();
-   testRead();
-   testFileSize();
-   testSeek();
-   testFilePos();
-   testReadLine();
-   testReadWord_withAlsoAllowed();
-   testReadWord();
-   testWriteString();
-   testWriteWord();
-   testWriteLine();
-
-   cout << "Todos los tests de files pasaron correctamente." << endl;
-   return 0;
-}
