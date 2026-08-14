@@ -16,6 +16,7 @@ void testRead();
 void testFileSize();
 void testSeek();
 void testFilePos();
+void testReadLine_withByteNo();
 void testReadLine();
 void testReadWord_withAlsoAllowed();
 void testReadWord();
@@ -31,6 +32,7 @@ int main()
    testFileSize();
    testSeek();
    testFilePos();
+   testReadLine_withByteNo();
    testReadLine();
    testReadWord_withAlsoAllowed();
    testReadWord();
@@ -134,6 +136,36 @@ void testFilePos()
    fseek(f, 3 * sizeof(int), SEEK_SET);
 
    assert(filePos<int>(f) == 3);
+
+   closeAndDeleteFile(f, path);
+}
+
+void testReadLine_withByteNo()
+{
+   const char* path = "files_test_read_line_byteno.txt";
+   FILE* f = openFile(path, "w+b");
+
+   const char* text = "uno\n\rdos\r\ntres";
+   fwrite(text, 1, 14, f);
+   fseek(f, 0, SEEK_SET);
+
+   string line;
+   long long byteno = -1;
+
+   assert(readLine(f, line, byteno));
+   assert(line == "uno");
+   assert(byteno == 0);
+
+   assert(readLine(f, line, byteno));
+   assert(line == "dos");
+   assert(byteno == 4);
+
+   assert(readLine(f, line, byteno));
+   assert(line == "tres");
+   assert(byteno == 10);
+
+   assert(!readLine(f, line, byteno));
+   assert(byteno == 14);
 
    closeAndDeleteFile(f, path);
 }
@@ -251,4 +283,3 @@ void testWriteLine()
 
    closeAndDeleteFile(f, path);
 }
-
