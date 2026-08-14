@@ -26,6 +26,17 @@ using std::to_string;
 
 int main()
 {
-    cout << "Hola Mundo !" << endl;
+    FILE* f = fopen("FRASES.txt","r+b");
+
+    fseek(f,3128,SEEK_SET);
+
+    long long b;
+    string ln;
+    while( readLine(f,ln,b) )
+    {
+        cout << b << ". " << ln << endl;
+    }
+
+    fclose(f);
     return 0;
 }

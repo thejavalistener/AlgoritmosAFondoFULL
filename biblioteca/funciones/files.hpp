@@ -56,11 +56,12 @@ template<typename T> int filePos(FILE* f)
 
 // --- manejor de archivos de texto ---
 
-bool readLine(FILE* f,string& ln)
+bool readLine(FILE* f,string& ln,long long& byteno)
 {
     assert(f != NULL && "El puntero al archivo no puede ser nulo");
     ln = "";
     char c;
+    byteno = ftell(f);
     int n = fread(&c,1,1,f);
     while( n!=0 && c!='\n' )
     {
@@ -73,6 +74,12 @@ bool readLine(FILE* f,string& ln)
     }
 
     return n != 0 || ln != "";
+}
+
+bool readLine(FILE* f,string& ln)
+{
+    long long dummy;
+    return readLine(f,ln,dummy);
 }
 
 bool readWord(FILE* f,string& w,string alsoAllowed)
