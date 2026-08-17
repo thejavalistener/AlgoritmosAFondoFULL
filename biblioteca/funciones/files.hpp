@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <cassert>
 #include "strings.hpp"
+#include "tokens.hpp"
 
 template<typename T> void write(FILE* f, T t)
 {
@@ -81,6 +82,25 @@ bool readLine(FILE* f,string& ln)
     long long dummy;
     return readLine(f,ln,dummy);
 }
+
+bool readLine(FILE* f,string ln,char sep,string*& fields,int& len)
+{
+    bool ret = false;
+    if( readLine(f,ln) )
+    {
+        len = tokenCount(ln,sep);
+        fields = new string[len];
+        for(int i=0; i<len;i++)
+        {
+            fields[i] = getTokenAt(ln,sep,i);
+        }
+
+        ret = true;
+    }
+
+    return ret;
+}
+
 
 bool readWord(FILE* f,string& w,string alsoAllowed)
 {
