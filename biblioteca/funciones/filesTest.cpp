@@ -17,6 +17,7 @@ void testFileSize();
 void testSeek();
 void testFilePos();
 void testReadLine_withByteNo();
+void testReadLine_withFields();
 void testReadLine();
 void testReadWord_withAlsoAllowed();
 void testReadWord();
@@ -33,6 +34,7 @@ int main()
    testSeek();
    testFilePos();
    testReadLine_withByteNo();
+   testReadLine_withFields(); // LUEGO DE LECCION 13
    testReadLine();
    testReadWord_withAlsoAllowed();
    testReadWord();
@@ -166,6 +168,46 @@ void testReadLine_withByteNo()
 
    assert(!readLine(f, line, byteno));
    assert(byteno == 14);
+
+   closeAndDeleteFile(f, path);
+}
+
+void testReadLine_withFields()
+{
+   const char* path = "files_test_read_line_fields.txt";
+   FILE* f = openFile(path, "w+b");
+
+   const char* text = "10,juan,perez\n20,ana,lopez\n";
+   fwrite(text, 1, 27, f);
+   fseek(f, 0, SEEK_SET);
+
+   string line = "sin_cambios";
+   string* fields = NULL;
+   int len = -1;
+
+   assert(readLine(f, line, ',', fields, len));
+   assert(len == 3);
+   assert(fields != NULL);
+   assert(fields[0] == "10");
+   assert(fields[1] == "juan");
+   assert(fields[2] == "perez");
+   delete[] fields;
+
+   fields = NULL;
+   len = -1;
+   assert(readLine(f, line, ',', fields, len));
+   assert(len == 3);
+   assert(fields != NULL);
+   assert(fields[0] == "20");
+   assert(fields[1] == "ana");
+   assert(fields[2] == "lopez");
+   delete[] fields;
+
+   fields = NULL;
+   len = -1;
+   assert(!readLine(f, line, ',', fields, len));
+   assert(fields == NULL);
+   assert(len == -1);
 
    closeAndDeleteFile(f, path);
 }
