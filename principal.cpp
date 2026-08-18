@@ -24,17 +24,46 @@ using std::string;
 using std::to_string;
 
 
+/*
+    Dado el archivo FRASES.txt, se pide desarrollar un programa interactivo donde el usuario
+    ingresa el anio, el autor y podrá ver las frases de ese anio y ese autor. Por ejemplo:
+
+    [ANIOS]
+    1. 1994
+    2. 1999
+    3. 2003
+    4. 2019
+    > 2
+
+    [AUTORES DISPONIBLES (1999)]
+    1. Corvalan, M.
+    2. Gonzalez, A.
+    3. Perez, R.
+    > 1
+
+    [FRASES (Corvalan, M., 1999)]
+    La vida es muy linda.
+    Los arboles lo son todo.
+    Cuando un ave vuela, dejala volar.
+
+    NOTA: Puede usar la funcion readLine, como se muestra en main.
+*/
+
 int main()
 {
     FILE* f = fopen("FRASES.txt","r+b");
 
-    fseek(f,3128,SEEK_SET);
-
     long long b;
-    string ln;
-    while( readLine(f,ln,b) )
+    string* fields;
+    int len;
+    while( readLine(f,'|',fields,len) )
     {
-        cout << b << ". " << ln << endl;
+        for(int i=0; i<len; i++)
+        {
+            cout << fields[i] << ", ";
+        }
+
+        cout << endl;
     }
 
     fclose(f);

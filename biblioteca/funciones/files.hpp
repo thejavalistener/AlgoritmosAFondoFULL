@@ -83,8 +83,9 @@ bool readLine(FILE* f,string& ln)
     return readLine(f,ln,dummy);
 }
 
-bool readLine(FILE* f,string ln,char sep,string*& fields,int& len)
+bool readLine(FILE* f,string*& fields,int& len,char sep)
 {
+    string ln;
     bool ret = false;
     if( readLine(f,ln) )
     {

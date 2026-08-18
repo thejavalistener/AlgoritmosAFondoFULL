@@ -181,11 +181,10 @@ void testReadLine_withFields()
    fwrite(text, 1, 27, f);
    fseek(f, 0, SEEK_SET);
 
-   string line = "sin_cambios";
    string* fields = NULL;
    int len = -1;
 
-   assert(readLine(f, line, ',', fields, len));
+   assert(readLine(f, fields, len, ','));
    assert(len == 3);
    assert(fields != NULL);
    assert(fields[0] == "10");
@@ -195,7 +194,7 @@ void testReadLine_withFields()
 
    fields = NULL;
    len = -1;
-   assert(readLine(f, line, ',', fields, len));
+   assert(readLine(f, fields, len, ','));
    assert(len == 3);
    assert(fields != NULL);
    assert(fields[0] == "20");
@@ -205,7 +204,7 @@ void testReadLine_withFields()
 
    fields = NULL;
    len = -1;
-   assert(!readLine(f, line, ',', fields, len));
+   assert(!readLine(f, fields, len, ','));
    assert(fields == NULL);
    assert(len == -1);
 
