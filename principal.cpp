@@ -56,7 +56,7 @@ int main()
     long long b;
     string* fields;
     int len;
-    while( readLine(f,'|',fields,len) )
+    while( readLine(f,fields,len,'|') )
     {
         for(int i=0; i<len; i++)
         {
