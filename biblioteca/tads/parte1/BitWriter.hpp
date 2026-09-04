@@ -7,6 +7,7 @@ using std::string;
 
 struct BitWriter
 {
+    string buff;
 };
 
 // inicializa el TAD
